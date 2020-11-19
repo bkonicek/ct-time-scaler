@@ -1,0 +1,12 @@
+image:
+    repository: bkonicek/ct-time-scaler
+    tag: 0.1.0
+    pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+# The name of the deployment to autoscale
+deployName: nginx-nginx
+
+# Defaults to 60 seconds if not set
+checkInterval: 

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "scaler.name" . }}
+  labels:
+    app: {{ template "scaler.name" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+data:
+  namespace: {{ .Release.Namespace }}
+  deploy_name: {{ .Values.deployName }}
+  {{- if .Values.checkInterval }}
+  check_interval: {{ .Values.checkInterval | quote}}
+  {{- end }}

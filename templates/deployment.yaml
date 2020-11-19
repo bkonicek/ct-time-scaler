@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "scaler.name" . }}
+  labels:
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app: {{ template "scaler.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "scaler.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "scaler.name" . }}
+    spec:
+      containers:
+        - name: {{ template "scaler.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: DEPLOYMENT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "scaler.name" . }}
+                  key: deploy_name
+            - name: NAMESPACE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "scaler.name" . }}
+                  key: namespace
+            {{- if .Values.checkInterval }}
+            - name: UPDATE_INTERVAL
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "scaler.name" . }}
+                  key: check_interval
+            {{- end }}
