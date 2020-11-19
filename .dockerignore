@@ -1,0 +1,8 @@
+.env
+.git
+.vscode
+.python-version
+
+helm
+Dockerfile
+README.md
