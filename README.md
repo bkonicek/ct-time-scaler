@@ -5,7 +5,7 @@ A time-based autoscaler written in Python
 The scaler app checks the current time and uses the Kubernetes API to scale up
 or down the given deployment based on the value of the last digit of the current time.
 
-For example, at 03:5**2**:16 it should scale the deployment to **2** replicas. At 04:1**1**:02 it should scale it down to 1 replica.
+For example, at 03:5**2** it should scale the deployment to **2** replicas. At 03:5**3** it should scale it up to 3 replicas. At 04:00 it should scale down to 0 running replicas.
 
 If run locally it uses the current context of the workstation's `~/.kube/config` file. If run within a pod it uses a service account to configure the API client.
 
