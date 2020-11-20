@@ -1,5 +1,5 @@
 # CT-Time-Scaler
-A time-based autoscaler written in Python
+A time-based autoscaler written in Python as a proof of concept.
 
 ## Description
 The scaler app checks the current time and uses the Kubernetes API to scale up
