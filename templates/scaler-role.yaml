@@ -4,5 +4,10 @@ metadata:
   name: {{ template "scaler.name" . }}-role
 rules:
   - apiGroups: ["apps"]
-    resources: ["deployments"]
-    verbs: ["patch"]
+    resources:
+    - "deployments"
+    - "deployments/status"
+    verbs:
+    - "get"
+    - "patch"
+    - "list"
