@@ -35,7 +35,8 @@ def main():
         now, numReplicas = getMinutesLastDigit()
         repBody = {
             "spec": {
-                "replicas": numReplicas}
+                "replicas": numReplicas
+            }
         }
         status = v1.read_namespaced_deployment_status(
             name=DEPLOYMENT_NAME, namespace=NAMESPACE)

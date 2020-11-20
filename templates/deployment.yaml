@@ -17,6 +17,7 @@ spec:
       labels:
         app: {{ template "scaler.name" . }}
     spec:
+      serviceAccountName: {{ template "scaler.name" . }}
       containers:
         - name: {{ template "scaler.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
